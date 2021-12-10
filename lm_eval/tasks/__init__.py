@@ -43,6 +43,7 @@ from . import pile
 from . import wikitext
 from . import lambada_multilingual
 from . import mutual
+from . import lambada_custom_prompt
 
 ########################################
 # Translation tasks
@@ -100,6 +101,7 @@ TASK_REGISTRY = {
     "drop": drop.DROP,
     "lambada": lambada.LAMBADA,
     "lambada_cloze": lambada_cloze.LAMBADA_cloze,
+    "lambada_cp": lambada_custom_prompt.LAMBADA_CP,
     
     # multilingual lambada
     **lambada_multilingual.construct_tasks(),

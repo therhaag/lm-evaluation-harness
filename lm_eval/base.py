@@ -228,7 +228,7 @@ class Task(abc.ABC):
 
     def fewshot_context(self, doc, num_fewshot, provide_description, rnd):
         raw_description = self.fewshot_description()
-        description = (raw_description + "\n===\n\n") if provide_description and raw_description else ""
+        description = (raw_description + "\n") if provide_description and raw_description else ""
 
         if num_fewshot == 0:
             labeled_examples = ""
@@ -245,9 +245,9 @@ class Task(abc.ABC):
                 # get rid of the doc that's the one we're evaluating, if it's in the fewshot
                 fewshotex = [x for x in fewshotex if x != doc][:num_fewshot]
 
-            labeled_examples = "\n\n".join(
+            labeled_examples = "\n".join(
                 [self.doc_to_text(doc) + self.doc_to_target(doc) for doc in fewshotex]
-            ) + "\n\n"
+            ) + "\n"
 
         example = self.doc_to_text(doc)
         return description + labeled_examples + example
